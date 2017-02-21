@@ -30,7 +30,7 @@ STATES("on") == undefined;
 
 //VALUE COMPARISONS
 var plain = STATES.ON;
-(plain == STATES.ON) == TRUE;
+(plain == STATES.ON) == true;
 (plain == 1) == true;
 (plain == STATES.OFF) == false;
 
@@ -95,8 +95,8 @@ STATES("TRUE") == STATES.ON;
 
 ```
   
-
-Chained Lookup:
+  
+Back reference:
 ```javascript
 
 var STATES = ENUM([
