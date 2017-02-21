@@ -1,4 +1,4 @@
-//2017-02-21 BASIC ENUMERATION SUPPORT
+//2017-02-21 BASIC ENUMERATION SUPPORT https://github.com/cgkineo/enum
 (function() {
 
     function ENUM(namesArray, lookupModifierFunction) {
