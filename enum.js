@@ -5,12 +5,16 @@
 
         if (!(namesArray instanceof Array)) throw "First argument of ENUM must be an array";
 
+        var lookupHash = {};
+
         // Create lookup & storage function
         var ENUMERATION = function(lookupValue){
 
             if (lookupModifierFunction) {
                 lookupValue = lookupModifierFunction(lookupValue);
             }
+
+            lookupValue = lookupHash[lookupValue];
            
             return ENUMERATION[lookupValue];
 
@@ -23,6 +27,8 @@
 
             // Make each value a power of 2 to allow for bitwise switches
             var value = Math.pow(2, i);
+            var baseName = names[0];
+            lookupHash[baseName] = baseName;
 
             for (var n = 0, m = names.length; n < m; n++) {
 
@@ -39,14 +45,27 @@
                 entry.ENUM = ENUMERATION;
 
                 // Add entry to lookup & storage function
-                ENUMERATION[name] = ENUMERATION[value] = entry;
+                if (n == 0) {
+
+                    // Add primary name as enumerable property
+                    ENUMERATION[name] = entry;
+
+                    // Add value to lookup hash
+                    lookupHash[value] = baseName;
+
+                } else {
+
+                    // Add alias to lookup hash
+                    lookupHash[name] = baseName;
+
+                }
 
             }
 
         }
 
         // Freeze ENUM object
-        Object.freeze(ENUMERATION);
+        if (Object.freeze) Object.freeze(ENUMERATION);
 
         return ENUMERATION;
 

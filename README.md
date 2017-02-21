@@ -21,16 +21,10 @@ STATES.BLUE == 8
 STATES.ON.asString == "ON"
 STATES.ON.asInteger == 1
 
-STATES[1] = STATES.ON
-STATES[2] = STATES.OFF
-STATES[4] = STATES.RED
-STATES[8] = STATES.BLUE
-
-STATES(1) == STATES.ON
+STATES(8) = STATES.BLUE
 STATES(-100) == undefined
 STATES("ON") == STATES.ON
 STATES("on") == undefined
-
 
 var plain = STATES.ON
 (plain == STATES.ON) == TRUE
@@ -41,6 +35,13 @@ var switched = (STATES.ON + STATES.OFF + STATES.BLUE)
 (switched & STATES.ON) == 1
 (switched & STATES.RED) == 0
 (switched & STATES.BLUE) == 8
+
+Object.keys(STATES) == [
+	"ON",
+	"OFF",
+	"RED",
+	"BLUE"
+];
 
 
 */
@@ -74,7 +75,7 @@ STATES("on") == 1
 ```
   
   
-Use multiple names per value:
+Add a lookup alias:
 ```javascript
 
 var STATES = ENUM([
@@ -86,7 +87,7 @@ var STATES = ENUM([
 	
 /*
 
-STATES.B == STATES.BLUE
+STATES("B") == STATES.BLUE
 
 */
 
