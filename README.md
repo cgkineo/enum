@@ -46,8 +46,8 @@ var switched = (STATES.ON + STATES.OFF + STATES.BLUE)
 */
 
 ```
-
-
+  
+  
 Define a lookup value modifier:
 ```javascript
 
@@ -68,6 +68,46 @@ var STATES = ENUM([
 STATES.ON == 1
 STATES("ON") == 1
 STATES("on") == 1
+
+*/
+
+```
+  
+  
+Use multiple names per value:
+```javascript
+
+var STATES = ENUM([
+	[ "ON", "TRUE" ],
+	"OFF",
+	"RED",
+	[ "BLUE", "B" ]
+]);
+	
+/*
+
+STATES.B == STATES.BLUE
+
+*/
+
+```
+  
+
+Chained Lookup:
+```javascript
+
+var STATES = ENUM([
+	[ "ON", "TRUE" ],
+	"OFF",
+	"RED",
+	[ "BLUE", "B" ]
+]);
+
+
+/*
+
+var state = STATES.ON
+(state == state.ENUM.ON) == true
 
 */
 
