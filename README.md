@@ -112,22 +112,25 @@ var state = STATES.ON;
 (state == state.ENUM.ON) == true;
 
 ```
-
+  
+  
 Fun usage example:
 ```javascript
 
-// TYPEOF operator with array support
+// TYPEOF with array support
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof
 
-var DATA_TYPE = ENUM([
+var TYPEOF = ENUM([
     "undefined", 
     "null", 
-    "string", 
-    "number", 
-    "boolean", 
-    "object", 
+    "boolean",
+    "number",
+    "string",
+    "symbol",
     "function",
+    "object",
     "array"
-], function DATA_TYPE_LOOKUP(lookup) { 
+], function TYPEOF_LOOKUP(lookup) { 
 
     var type = (typeof lookup);
     if (type == "object") {
@@ -139,10 +142,20 @@ var DATA_TYPE = ENUM([
 });
 
 
+TYPEOF([]) == TYPEOF.array;
+TYPEOF(" ") == TYPEOF.string;
+TYPEOF(1.23) == TYPEOF.number;
 
-DATA_TYPE([]) == "array";
-DATA_TYPE(" ") == "string";
-DATA_TYPE(1.23) == "number";
+switch( TYPEOF(value) ) {
+case TYPEOF.null:
+
+case TYPEOF.undefined:
+	
+case TYPEOF.array:
+
+case TYPEOF.object:
+
+}
 
 
 ```
