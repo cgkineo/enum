@@ -112,3 +112,37 @@ var state = STATES.ON;
 (state == state.ENUM.ON) == true;
 
 ```
+
+Fun usage example:
+```javascript
+
+// TYPEOF operator with array support
+
+var DATA_TYPE = ENUM([
+    "undefined", 
+    "null", 
+    "string", 
+    "number", 
+    "boolean", 
+    "object", 
+    "function",
+    "array"
+], function DATA_TYPE_LOOKUP(lookup) { 
+
+    var type = (typeof lookup);
+    if (type == "object") {
+        if (lookup instanceof Array) return "array";
+        if (lookup === null) return "null";
+    }
+    return type;
+
+});
+
+
+
+DATA_TYPE([]) == "array";
+DATA_TYPE(" ") == "string";
+DATA_TYPE(1.23) == "number";
+
+
+```
