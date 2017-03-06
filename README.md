@@ -19,6 +19,8 @@ STATES.BLUE == 8;
 
 //CONVERSION TO STRING / INTEGER
 STATES.ON.asString == "ON";
+STATES.ON.asLowerCase == "on";
+STATES.ON.asUpperCase == "ON";
 STATES.ON.asInteger == 1;
 
 //LOOKUP FUNCTION
