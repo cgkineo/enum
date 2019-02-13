@@ -1,5 +1,5 @@
 # enum
-A basic enumeration library for JavaScript
+Simple value enumeration in javascript. Useful for bitwise switches. UMD compatible. IE8 compatible. Node Compatible.
 
 Simple Usage:
 ```javascript
@@ -12,40 +12,41 @@ var STATES = ENUM([
 ]);
 
 //VALUES
-STATES.ON == 1;
-STATES.OFF == 2;
-STATES.RED == 4;
-STATES.BLUE == 8;
+STATES.ON === 1;
+STATES.OFF === 2;
+STATES.RED === 4;
+STATES.BLUE === 8;
 
 //CONVERSION TO STRING / INTEGER
 STATES.ON.asString === "ON";
 STATES.ON.asLowerCase === "on";
 STATES.ON.asUpperCase === "ON";
+STATES.ON.asNumber === 1;
 STATES.ON.asInteger === 1;
-STATES.ON.asNumber === 2;
 STATES.ON.toString() === "ON";
 STATES.ON.toLowerCase() === "on";
 STATES.ON.toUpperCase() === "ON";
 STATES.ON.toNumber() === 1;
+STATES.ON.toInteger === 1;
 
 //LOOKUP FUNCTION
-STATES(8) == STATES.BLUE;
-STATES(8).asString == "BLUE";
-STATES(-100) == undefined;
-STATES("ON") == STATES.ON;
-STATES("on") == undefined;
+STATES(8) === STATES.BLUE;
+STATES(8).asString === "BLUE";
+STATES(-100) === undefined;
+STATES("ON") === STATES.ON;
+STATES("on") === undefined;
 
 //VALUE COMPARISONS
 var plain = STATES.ON;
-(plain == STATES.ON) == true;
-(plain == 1) == true;
-(plain == STATES.OFF) == false;
+(plain === STATES.ON) === true;
+(plain == 1) === true;
+(plain == STATES.OFF) === false;
 
 //BITWISE SWITCHES
 var switched = (STATES.ON + STATES.OFF + STATES.BLUE);
-(switched & STATES.ON) == 1;
-(switched & STATES.RED) == 0;
-(switched & STATES.BLUE) == 8;
+(switched & STATES.ON) === 1;
+(switched & STATES.RED) === 0;
+(switched & STATES.BLUE) === 8;
 
 //ENUMERABLE KEYS
 Object.keys(STATES) == [
@@ -69,7 +70,7 @@ var STATES = ENUM([
 	"BLUE"
 ], function statesLookup(value) {
 
-	if (typeof value == "string") return value.toUpperCase();
+	if (typeof value === "string") return value.toUpperCase();
 	return value;
 
 });
@@ -96,8 +97,8 @@ var STATES = ENUM([
 ]);
 
 //ALIAS LOOKUP
-STATES("B") == STATES.BLUE;
-STATES("TRUE") == STATES.ON;
+STATES("B") === STATES.BLUE;
+STATES("TRUE") === STATES.ON;
 
 
 ```
@@ -116,7 +117,7 @@ var STATES = ENUM([
 
 //BACK REFERENCE TO ENUMERATION OBJECT
 var state = STATES.ON;
-(state == state.ENUM.ON) == true;
+(state === state.ENUM.ON) === true;
 
 ```
 
@@ -140,7 +141,7 @@ var TYPEOF = ENUM([
 ], function TYPEOF_LOOKUP(lookup) {
 
     var type = (typeof lookup);
-    if (type == "object") {
+    if (type === "object") {
         if (lookup instanceof Array) return "array";
         if (lookup === null) return "null";
     }
@@ -149,9 +150,9 @@ var TYPEOF = ENUM([
 });
 
 
-TYPEOF([]) == TYPEOF.array;
-TYPEOF(" ") == TYPEOF.string;
-TYPEOF(1.23) == TYPEOF.number;
+TYPEOF([]) === TYPEOF.array;
+TYPEOF(" ") === TYPEOF.string;
+TYPEOF(1.23) === TYPEOF.number;
 
 switch( TYPEOF(value) ) {
 case TYPEOF.null:

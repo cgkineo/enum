@@ -1,0 +1,32 @@
+{
+  "name": "enum2",
+  "version": "0.0.2",
+  "description": "Simple value enumeration in javascript. Useful for bitwise switches. UMD compatible. IE8 compatible. Node Compatible.",
+  "main": "enum.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cgkineo/enum.git"
+  },
+  "keywords": [
+    "enum",
+    "enumeration",
+    "switch",
+    "bitwise"
+  ],
+  "author": "oliver.foster",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cgkineo/enum/issues"
+  },
+  "homepage": "https://github.com/cgkineo/enum#readme",
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "should": "^13.2.3"
+  }
+}
