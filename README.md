@@ -18,10 +18,15 @@ STATES.RED == 4;
 STATES.BLUE == 8;
 
 //CONVERSION TO STRING / INTEGER
-STATES.ON.asString == "ON";
-STATES.ON.asLowerCase == "on";
-STATES.ON.asUpperCase == "ON";
-STATES.ON.asInteger == 1;
+STATES.ON.asString === "ON";
+STATES.ON.asLowerCase === "on";
+STATES.ON.asUpperCase === "ON";
+STATES.ON.asInteger === 1;
+STATES.ON.asNumber === 2;
+STATES.ON.toString() === "ON";
+STATES.ON.toLowerCase() === "on";
+STATES.ON.toUpperCase() === "ON";
+STATES.ON.toNumber() === 1;
 
 //LOOKUP FUNCTION
 STATES(8) == STATES.BLUE;
@@ -52,8 +57,8 @@ Object.keys(STATES) == [
 
 
 ```
-  
-  
+
+
 Define a lookup value modifier:
 ```javascript
 
@@ -63,12 +68,12 @@ var STATES = ENUM([
 	"RED",
 	"BLUE"
 ], function statesLookup(value) {
-	
+
 	if (typeof value == "string") return value.toUpperCase();
 	return value;
 
 });
-	
+
 //LOOKUP EXAMPLES
 STATES.ON == 1;
 STATES("ON") == 1;
@@ -78,8 +83,8 @@ STATES("on") == 1;
 
 
 ```
-  
-  
+
+
 Add a lookup alias:
 ```javascript
 
@@ -89,15 +94,15 @@ var STATES = ENUM([
 	"RED",
 	[ "BLUE", "B" ]
 ]);
-	
+
 //ALIAS LOOKUP
 STATES("B") == STATES.BLUE;
 STATES("TRUE") == STATES.ON;
 
 
 ```
-  
-  
+
+
 Back reference:
 ```javascript
 
@@ -114,8 +119,8 @@ var state = STATES.ON;
 (state == state.ENUM.ON) == true;
 
 ```
-  
-  
+
+
 Fun usage example:
 ```javascript
 
@@ -123,8 +128,8 @@ Fun usage example:
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof
 
 var TYPEOF = ENUM([
-    "undefined", 
-    "null", 
+    "undefined",
+    "null",
     "boolean",
     "number",
     "string",
@@ -132,7 +137,7 @@ var TYPEOF = ENUM([
     "function",
     "object",
     "array"
-], function TYPEOF_LOOKUP(lookup) { 
+], function TYPEOF_LOOKUP(lookup) {
 
     var type = (typeof lookup);
     if (type == "object") {
@@ -152,7 +157,7 @@ switch( TYPEOF(value) ) {
 case TYPEOF.null:
 
 case TYPEOF.undefined:
-	
+
 case TYPEOF.array:
 
 case TYPEOF.object:

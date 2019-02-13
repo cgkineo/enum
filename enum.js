@@ -1,5 +1,13 @@
 //2017-03-06 BASIC ENUMERATION SUPPORT https://github.com/cgkineo/enum
-(function() {
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        define(factory);
+    } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
+        module.exports = factory();
+    } else {
+        root.ENUM = factory();
+    }
+}(typeof self !== 'undefined' ? self : this, function () {
 
     function ENUM(namesArray, lookupModifierFunction) {
 
@@ -15,7 +23,7 @@
             }
 
             lookupValue = lookupHash[lookupValue];
-           
+
             return ENUMERATION[lookupValue];
 
         };
@@ -41,7 +49,13 @@
                 entry.asString = name;
                 entry.asLowerCase = name.toLowerCase();
                 entry.asUpperCase = name.toUpperCase();
-                entry.asInteger = value;
+                entry.asNumber = entry.asInteger = value;
+
+                // Assign standard conversion functions to entry
+                entry.toString = function() { return name; };
+                entry.toLowerCase = function() { return entry.asLowerCase; };
+                entry.toUpperCase = function() { return entry.asUpperCase; };
+                entry.toNumber = entry.toInteger = function() { return value; };
 
                 // Reference lookup & storage function from each entry
                 entry.ENUM = ENUMERATION;
@@ -72,7 +86,7 @@
         return ENUMERATION;
 
     };
-    
-    window.ENUM = ENUM;
-    
-})();
+
+    return ENUM;
+
+}));
